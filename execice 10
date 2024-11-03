@@ -1,0 +1,12 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+void extractDateTime(const string& dateTime) {
+    string jour = dateTime.substr(0, 2);
+    string mois = dateTime.substr(2, 2);
+    string annee = dateTime.substr(4, 4);
+    string heure = dateTime.substr(8, 2);
+    string minute = dateTime.substr(10, 2);
+    cout << "Date: " << jour << "/" << mois << "/" << annee << ", Heure: " << heure << ":" << minute << endl;
+}
