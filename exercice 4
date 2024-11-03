@@ -1,0 +1,11 @@
+#include <iostream>
+using namespace std;
+
+class Test {
+private:
+    static int call_count;
+public:
+    void call() { call_count++; }
+    static int getCount() { return call_count; }
+};
+int Test::call_count = 0;
