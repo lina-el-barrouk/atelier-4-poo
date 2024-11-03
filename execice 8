@@ -1,0 +1,14 @@
+#include <iostream>
+using namespace std;
+
+class Fichier {
+private:
+    char* P;
+    int longueur;
+public:
+    Fichier(int len) : longueur(len) { P = new char[len]; }
+    ~Fichier() { delete[] P; }
+    void Creation(int len) { P = new char[len]; longueur = len; }
+    void Remplit() { for(int i = 0; i < longueur; i++) P[i] = 'A' + (i % 26); }
+    void Affiche() { for(int i = 0; i < longueur; i++) cout << P[i]; cout << endl; }
+};
