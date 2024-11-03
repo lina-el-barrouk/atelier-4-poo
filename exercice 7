@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+class Pile {
+private:
+    struct Node {
+        int data;
+        Node* next;
+    };
+    Node* topNode;
+
+public:
+    Pile() : topNode(nullptr) {}
+    
+    void push(int valeur) {
+        Node* newNode = new Node;
+        newNode->data = valeur;
+        newNode->next = topNode;
+        topNode = newNode;
+    }
+
+    void pop() {
+        if (topNode) {
+            Node* temp = topNode;
+            topNode = topNode->next;
+            delete temp;
+        } else {
+            cout << "Pile vide!" << endl;
+        }
+    }
+
+    bool empty() const {
+        return topNode == nullptr;
+    }
+
+    int top() const {
+        if (topNode) return topNode->data;
+        else {
+            cout << "Pile vide!" << endl;
+            return -1; // Valeur arbitraire pour indiquer que la pile est vide
+        }
+    }
+
+    ~Pile() {
+        while (!empty()) {
+            pop();
+        }
+    }
+};
