@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Personne {
+protected:
+    string nom, prenom, dateNaissance;
+public:
+    Personne(string n, string p, string d) : nom(n), prenom(p), dateNaissance(d) {}
+    virtual void Afficher() { cout << "Nom: " << nom << ", Prenom: " << prenom << ", Date de Naissance: " << dateNaissance << endl; }
+};
+
+class Employe : public Personne {
+protected:
+    double salaire;
+public:
+    Employe(string n, string p, string d, double s) : Personne(n, p, d), salaire(s) {}
+    void Afficher() override { Personne::Afficher(); cout << "Salaire: " << salaire << endl; }
+};
+
+class Chef : public Employe {
+protected:
+    string service;
+public:
+    Chef(string n, string p, string d, double s, string srv) : Employe(n, p, d, s), service(srv) {}
+    void Afficher() override { Employe::Afficher(); cout << "Service: " << service << endl; }
+};
+
+class Directeur : public Chef {
+protected:
+    string societe;
+public:
+    Directeur(string n, string p, string d, double s, string srv, string soc) : Chef(n, p, d, s, srv), societe(soc) {}
+    void Afficher() override { Chef::Afficher(); cout << "Societe: " << societe << endl; }
+};
