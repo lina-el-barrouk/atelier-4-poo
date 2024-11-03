@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+struct Element {
+    int data;
+    Element* next;
+};
+
+class Liste {
+private:
+    Element* head;
+public:
+    Liste() : head(nullptr) {}
+
+    void ajouter(int value) {
+        Element* newElem = new Element{value, head};
+        head = newElem;
+    }
+
+    void supprimer() {
+        if (head) {
+            Element* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+
+    void afficher() const {
+        Element* current = head;
+        while (current) {
+            cout << current->data << " ";
+            current = current->next;
+        }
+        cout << endl;
+    }
+
+    ~Liste() {
+        while (head) {
+            supprimer();
+        }
+    }
+};
