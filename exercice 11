@@ -1,0 +1,54 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+class Traitement {
+private:
+    vector<int> valeurs;
+public:
+    void Initialise() {
+        int num;
+        while (valeurs.size() < 15) {
+            cout << "Entrez un entier pair (non nul) : ";
+            cin >> num;
+            if (num % 2 == 0 && num != 0) valeurs.push_back(num);
+        }
+    }
+
+    void show(int index = 0) const {
+        if (index < valeurs.size()) {
+            cout << valeurs[index] << " ";
+            show(index + 1);
+        }
+    }
+
+    double moyenne() const {
+        double sum = 0;
+        for (int val : valeurs) sum += val;
+        return sum / valeurs.size();
+    }
+
+    double median() {
+        selectionSort(valeurs);
+        int n = valeurs.size();
+        if (n % 2 == 0)
+            return (valeurs[n / 2 - 1] + valeurs[n / 2]) / 2.0;
+        else
+            return valeurs[n / 2];
+    }
+
+    // Implémentation de tri par sélection
+    void selectionSort(vector<int>& v) {
+        int n = v.size();
+        for (int i = 0; i < n - 1; i++) {
+            int minIdx = i;
+            for (int j = i + 1; j < n; j++) {
+                if (v[j] < v[minIdx]) minIdx = j;
+            }
+            // Échanger les éléments
+            int temp = v[i];
+            v[i] = v[minIdx];
+            v[minIdx] = temp;
+        }
+    }
+};
