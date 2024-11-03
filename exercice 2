@@ -1,0 +1,21 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Animal {
+protected:
+    string name;
+    int age;
+public:
+    void set_value(string n, int a) { name = n; age = a; }
+};
+
+class Zebra : public Animal {
+public:
+    void display() { cout << "Zebra: " << name << ", Age: " << age << ", Origin: Africa" << endl; }
+};
+
+class Dolphin : public Animal {
+public:
+    void display() { cout << "Dolphin: " << name << ", Age: " << age << ", Origin: Ocean" << endl; }
+};
